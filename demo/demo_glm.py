@@ -96,11 +96,11 @@ def main() -> None:
     # 2. Simulate spike counts                                            #
     # ------------------------------------------------------------------ #
     print("Simulating spike counts…")
+    rng_sim = np.random.default_rng(6)
     spk = np.zeros_like(lam_true)
     for m in range(lam_true.shape[0]):
         for n in range(lam_true.shape[1]):
-            # Replace rng usage to use global numpy rng via seed
-            spk[m, n] = com_rnd(lam_true[m, n], nu[m, n], 1)[0]
+            spk[m, n] = com_rnd(lam_true[m, n], nu[m, n], 1, rng=rng_sim)[0]
 
     # ------------------------------------------------------------------ #
     # 3. Prepare model matrices                                           #

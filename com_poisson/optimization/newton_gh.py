@@ -87,7 +87,7 @@ def newtonGH(
         if np.linalg.norm(fx) < TolFun or np.linalg.norm(dx) < TolX:
             break
 
-    if k == MaxIter:
+    if k >= MaxIter:
         raise RuntimeError(
             f"newtonGH did not converge in {MaxIter} iterations. "
             "Consider increasing MaxIter or TolX."

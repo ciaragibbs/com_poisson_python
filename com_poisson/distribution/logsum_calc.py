@@ -1,5 +1,7 @@
 """Log-sum calculations for numerical stability in CMP distribution computations."""
 
+from __future__ import annotations
+
 import numpy as np
 from scipy.special import gammaln
 

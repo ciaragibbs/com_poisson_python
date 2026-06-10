@@ -168,7 +168,6 @@ class fastBSpline:
 
         # Build design matrix and solve
         sp0 = fastBSpline(knots, np.zeros(nw))
-        sp0.order  # ensure order is computed
         B = sp0.getBasis(x)
         weights, _, _, _ = np.linalg.lstsq(B, y, rcond=None)
         return fastBSpline(knots, weights)

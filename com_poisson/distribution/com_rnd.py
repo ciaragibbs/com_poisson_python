@@ -11,6 +11,7 @@ def com_rnd(
     lam: float | np.ndarray,
     nu: float | np.ndarray,
     N: int | None = None,
+    rng: np.random.Generator | None = None,
 ) -> np.ndarray:
     """Draw random samples from a Conway-Maxwell-Poisson distribution.
 
@@ -24,12 +25,18 @@ def com_rnd(
     N : int, optional
         Number of samples to draw.  When provided, ``lam`` and ``nu`` must
         be scalars and ``N`` samples are returned.
+    rng : np.random.Generator, optional
+        Random number generator for reproducibility.  If None, uses
+        ``np.random.default_rng()``.
 
     Returns
     -------
     x : np.ndarray
         Sampled counts.
     """
+    if rng is None:
+        rng = np.random.default_rng()
+
     max_val = 1000
     counts = np.arange(0, max_val + 1)
 
@@ -42,7 +49,7 @@ def com_rnd(
             probs = np.maximum(probs, 0)
             probs /= probs.sum()
             cdf = np.cumsum(probs)
-            u = np.random.uniform()
+            u = rng.uniform()
             x[i] = int(np.searchsorted(cdf, u))
         return x
     else:
@@ -52,5 +59,5 @@ def com_rnd(
         probs = np.maximum(probs, 0)
         probs /= probs.sum()
         cdf = np.cumsum(probs)
-        u = np.random.uniform(size=int(N))
+        u = rng.uniform(size=int(N))
         return np.searchsorted(cdf, u).astype(int)
