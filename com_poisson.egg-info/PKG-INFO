@@ -1,3 +1,17 @@
+Metadata-Version: 2.4
+Name: com_poisson
+Version: 0.1.0
+Summary: Adaptive filtering for Conway-Maxwell-Poisson distributions (neuronal spike data analysis)
+License: MIT
+Keywords: statistics,neuroscience,CMP,Conway-Maxwell-Poisson,spike train
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.22
+Requires-Dist: scipy>=1.8
+Provides-Extra: dev
+Requires-Dist: pytest>=7; extra == "dev"
+Requires-Dist: matplotlib>=3.5; extra == "dev"
+
 # COM_POISSON Python Package
 
 A Python 3.9+ implementation of adaptive filtering for Conway-Maxwell-Poisson (CMP)
